@@ -1,0 +1,22 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/.vs/LogCorner.EduSync.Speech.Query
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Application/bin/Debug/netcoreapp3.1
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Application/obj
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Application.UnitTests/bin/Debug/netcoreapp3.1
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Application.UnitTests/obj
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Domain/bin/Debug/netcoreapp3.1
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Domain/obj
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Domain.UnitTests/bin/Debug/netcoreapp3.1
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Domain.UnitTests/obj
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Infrastructure/bin/Debug/netcoreapp3.1
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Infrastructure/obj
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Infrastructure.UnitTests/bin/Debug/netcoreapp3.1
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Presentation.UnitTests/obj
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Presentation.UnitTests/bin/Debug/netcoreapp3.1
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Presentation/obj
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Presentation/bin/Debug/netcoreapp3.1
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Infrastructure.UnitTests/obj
+/src/LogCorner.EduSync.Speech.Query/.vs/LogCorner.EduSync.Speech.Query
