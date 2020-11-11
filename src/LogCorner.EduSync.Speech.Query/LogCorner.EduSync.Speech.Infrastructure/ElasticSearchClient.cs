@@ -38,7 +38,11 @@ namespace LogCorner.EduSync.Speech.Infrastructure
             _client = new ElasticClient(connectionSettings);
 
             var result = _client.Indices.Exists(Indices.Index(_indexName));
-            if (result.Exists) return new CreateIndexResponse();
+            if (result.Exists) return new CreateIndexResponse
+                {
+                ShardsAcknowledged = true
+                }
+                 ;
             var createIndexResponse = _client.Indices.Create(_indexName, c => c
                 .Map<T>(m => m.AutoMap())
             );

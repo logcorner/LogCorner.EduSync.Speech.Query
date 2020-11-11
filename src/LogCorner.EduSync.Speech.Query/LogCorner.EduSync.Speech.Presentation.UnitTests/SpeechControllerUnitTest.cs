@@ -19,7 +19,7 @@ namespace LogCorner.EduSync.Speech.Presentation.UnitTests
             var mockSpeechUseCase = new Mock<ISpeechUseCase>();
             IEnumerable<SpeechView> speeches = new List<SpeechView>
             {
-                new SpeechView(Guid.NewGuid(), It.IsAny<string>(),It.IsAny<string>(),It.IsAny<string>(),It.IsAny<string>())
+                new SpeechView(Guid.NewGuid(), It.IsAny<string>(),It.IsAny<string>(),It.IsAny<string>(),It.IsAny<SpeechType>(),It.IsAny<int>())
             };
             mockSpeechUseCase.Setup(m => m.Handle()).Returns(Task.FromResult(speeches));
             var speechController = new SpeechController(mockSpeechUseCase.Object);
@@ -40,7 +40,7 @@ namespace LogCorner.EduSync.Speech.Presentation.UnitTests
             Guid id = Guid.NewGuid();
             var speech =
                 new SpeechView(id, It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
-                    It.IsAny<string>());
+                    It.IsAny<SpeechType>(), It.IsAny<int>());
             var mockSpeechUseCase = new Mock<ISpeechUseCase>();
            
             mockSpeechUseCase.Setup(m => m.Handle(id)).Returns(Task.FromResult(speech));

@@ -15,9 +15,9 @@ namespace LogCorner.EduSync.Speech.Infrastructure
                 {
                     var setup = elasticSearchClient.Init(url);
 
-                    if (setup.IsValid)
+                    if (setup.ServerError != null)
                     {
-                        throw new Exception($"Cannot initialyze elastci search {url} {index} {setup.OriginalException}");
+                        throw new Exception($"Cannot initialyze elasticsearch {url} - {index} - {setup.ServerError} - {setup.OriginalException}");
                     }
                 }
 

@@ -8,15 +8,16 @@ namespace LogCorner.EduSync.Speech.ReadModel.SpeechReadModel
 
         public string Url { get; private set; }
         public string Description { get; private set; }
-        public string Type { get; private set; }
+        public SpeechType Type { get; private set; }
 
-        public SpeechView(Guid id, string title, string description, string url, string type)
+        public SpeechView(Guid id, string title, string description, string url, SpeechType type, long version)
         {
             Id = id;
             Title = title;
             Description = description;
             Url = url;
             Type = type;
+            Version = version;
         }
     }
 }

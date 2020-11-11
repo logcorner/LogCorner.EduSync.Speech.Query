@@ -18,7 +18,7 @@ namespace LogCorner.EduSync.Speech.Application.UnitTests
             var mockElasticSearchClient = new Mock<IElasticSearchClient<SpeechView>>();
             IList<SpeechView> speeches = new List<SpeechView>
             {
-                new SpeechView(Guid.NewGuid(), It.IsAny<string>(),It.IsAny<string>(),It.IsAny<string>(),It.IsAny<string>())
+                new SpeechView(Guid.NewGuid(), It.IsAny<string>(),It.IsAny<string>(),It.IsAny<string>(),It.IsAny<SpeechType>(),It.IsAny<int>())
             };
             mockElasticSearchClient.Setup(m => m.Get()).Returns(Task.FromResult(speeches));
             ISpeechUseCase speechUseCase = new SpeechUseCase(mockElasticSearchClient.Object);
@@ -38,7 +38,7 @@ namespace LogCorner.EduSync.Speech.Application.UnitTests
             var mockElasticSearchClient = new Mock<IElasticSearchClient<SpeechView>>();
             var speech =
                 new SpeechView(id, It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
-                    It.IsAny<string>());
+                    It.IsAny<SpeechType>(), It.IsAny<int>());
            
             mockElasticSearchClient.Setup(m => m.Get(id)).Returns(Task.FromResult(speech));
             ISpeechUseCase speechUseCase = new SpeechUseCase(mockElasticSearchClient.Object);

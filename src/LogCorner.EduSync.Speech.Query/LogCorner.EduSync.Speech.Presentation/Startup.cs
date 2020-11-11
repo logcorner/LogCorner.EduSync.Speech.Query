@@ -29,8 +29,9 @@ namespace LogCorner.EduSync.Speech.Presentation
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.WithOrigins("https://localhost:5002/api/speech",
-                            "http://localhost:5003/api/speech").AllowAnyOrigin().AllowAnyHeader();
+                        builder.WithOrigins("http://localhost:4200")
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod();
                     });
             });
             services.AddControllers();
@@ -44,7 +45,7 @@ namespace LogCorner.EduSync.Speech.Presentation
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors();
-            app.UseHttpsRedirection();
+          //  app.UseHttpsRedirection();
 
             app.UseRouting();
 
