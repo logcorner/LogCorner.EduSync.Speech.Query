@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using LogCorner.EduSync.Speech.ReadModel.SpeechReadModel;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using LogCorner.EduSync.Speech.ReadModel.SpeechReadModel;
 
 namespace LogCorner.EduSync.Speech.Infrastructure
 {

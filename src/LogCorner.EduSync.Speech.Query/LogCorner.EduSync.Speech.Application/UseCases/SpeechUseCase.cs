@@ -1,8 +1,9 @@
 ﻿using LogCorner.EduSync.Speech.Infrastructure;
+using LogCorner.EduSync.Speech.Infrastructure.Model;
+using LogCorner.EduSync.Speech.ReadModel.SpeechReadModel;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using LogCorner.EduSync.Speech.ReadModel.SpeechReadModel;
 
 namespace LogCorner.EduSync.Speech.Application.UseCases
 {
@@ -18,6 +19,11 @@ namespace LogCorner.EduSync.Speech.Application.UseCases
         public async Task<IEnumerable<SpeechView>> Handle()
         {
             return await _repo.Get();
+        }
+
+        public async Task<SearchResult<SpeechView>> Handle(int page, int size)
+        {
+            return await _repo.Get(page, size);
         }
 
         public async Task<SpeechView> Handle(Guid id)

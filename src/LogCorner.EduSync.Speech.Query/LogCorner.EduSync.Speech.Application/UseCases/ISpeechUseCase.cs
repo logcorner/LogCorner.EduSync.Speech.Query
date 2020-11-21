@@ -5,6 +5,5 @@ namespace LogCorner.EduSync.Speech.Application.UseCases
 {
     public interface ISpeechUseCase : IQueryHandler<SpeechView>
     {
-       
     }
 }

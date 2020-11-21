@@ -45,7 +45,7 @@ namespace LogCorner.EduSync.Speech.Presentation
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors();
-          //  app.UseHttpsRedirection();
+            //  app.UseHttpsRedirection();
 
             app.UseRouting();
 
