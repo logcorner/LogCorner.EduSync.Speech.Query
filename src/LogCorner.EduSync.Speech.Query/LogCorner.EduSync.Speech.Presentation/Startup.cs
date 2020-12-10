@@ -1,6 +1,8 @@
 using LogCorner.EduSync.Speech.Application.UseCases;
 using LogCorner.EduSync.Speech.Infrastructure;
+using LogCorner.EduSync.Speech.Presentation.Exceptions;
 using LogCorner.EduSync.Speech.ReadModel.SpeechReadModel;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +36,12 @@ namespace LogCorner.EduSync.Speech.Presentation
                             .AllowAnyMethod();
                     });
             });
+            services
+                .AddAuthentication(options =>
+                    {
+                        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    }
+                ).AddJwtBearer(options => Configuration.Bind("AzureAd", options));
             services.AddControllers();
         }
 
@@ -45,10 +53,11 @@ namespace LogCorner.EduSync.Speech.Presentation
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors();
-            //  app.UseHttpsRedirection();
-
+          
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
