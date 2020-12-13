@@ -28,13 +28,12 @@ namespace LogCorner.EduSync.Speech.Presentation
 
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:4200")
-                            .AllowAnyOrigin()
-                            .AllowAnyMethod();
-                    });
+                options.AddPolicy(
+                    "CorsPolicy",
+                    builder => builder.WithOrigins("http://localhost:4200")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
             });
             services
                 .AddAuthentication(options =>
@@ -52,8 +51,8 @@ namespace LogCorner.EduSync.Speech.Presentation
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors();
-          
+            app.UseCors("CorsPolicy");
+
             app.UseMiddleware<ExceptionMiddleware>();
             app.UseRouting();
 
