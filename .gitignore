@@ -32,3 +32,5 @@
 /src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Presentation.UnitTests/bin/Debug/net5.0
 /src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.ReadModel/bin/Debug/net5.0
 /src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.ReadModel.UnitTests/bin/Debug/net5.0
+/src/bin/Debug
+/src/obj

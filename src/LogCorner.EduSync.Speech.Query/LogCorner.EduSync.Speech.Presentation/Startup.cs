@@ -21,15 +21,17 @@ namespace LogCorner.EduSync.Speech.Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var elasticSearchUrl = Configuration["elasticSearchUrl"];
             services.AddScoped<ISpeechUseCase, SpeechUseCase>();
-            services.AddElasticSearch<SpeechView>("http://localhost:9200", "speech");
+            services.AddElasticSearch<SpeechView>(elasticSearchUrl, "speech");
 
             services.AddCors(options =>
             {
+                var allowedOrigins = Configuration["allowedOrigins"];
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200")
+                        builder.WithOrigins(allowedOrigins)
                             .AllowAnyOrigin()
                             .AllowAnyMethod();
                     });
