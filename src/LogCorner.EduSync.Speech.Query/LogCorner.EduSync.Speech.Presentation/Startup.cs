@@ -11,14 +11,12 @@ namespace LogCorner.EduSync.Speech.Presentation
 {
     public class Startup
     {
+        private IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             var elasticSearchUrl = Configuration["elasticSearchUrl"];
@@ -31,7 +29,7 @@ namespace LogCorner.EduSync.Speech.Presentation
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.WithOrigins(allowedOrigins)
+                        builder.WithOrigins(allowedOrigins.Split(","))
                             .AllowAnyOrigin()
                             .AllowAnyMethod();
                     });

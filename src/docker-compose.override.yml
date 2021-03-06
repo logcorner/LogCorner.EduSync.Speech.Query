@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  logcorner.edusync.speech.presentation:
+  logcorner.edusync.speech.query:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
