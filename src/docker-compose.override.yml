@@ -8,8 +8,8 @@ services:
     ports:
       - "8082:80"
     networks:
-      - my_network
+      - speech_network
 networks:
-  my_network:
+  speech_network:
     external:
-      name: my_network   
+      name: speech_network   

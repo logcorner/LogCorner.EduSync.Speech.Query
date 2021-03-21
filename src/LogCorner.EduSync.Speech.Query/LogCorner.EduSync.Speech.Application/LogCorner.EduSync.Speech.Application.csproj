@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LogCorner.EduSync.Speech.Domain\LogCorner.EduSync.Speech.ReadModel.csproj" />
     <ProjectReference Include="..\LogCorner.EduSync.Speech.Infrastructure\LogCorner.EduSync.Speech.Infrastructure.csproj" />
     <ProjectReference Include="..\LogCorner.EduSync.Speech.ReadModel\LogCorner.EduSync.Speech.ReadModel.csproj" />
   </ItemGroup>
