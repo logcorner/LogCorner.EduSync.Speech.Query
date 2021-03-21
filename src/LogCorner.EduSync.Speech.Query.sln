@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogCorner.EduSync.Speech.Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogCorner.EduSync.Speech.ReadModel.UnitTests", "LogCorner.EduSync.Speech.Query\LogCorner.EduSync.Speech.ReadModel.UnitTests\LogCorner.EduSync.Speech.ReadModel.UnitTests.csproj", "{D4A2C792-C170-4D54-A8B4-4D1DC551CCB6}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A0C21CA1-29A6-4B20-B961-5EB20CE8CA43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{D4A2C792-C170-4D54-A8B4-4D1DC551CCB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4A2C792-C170-4D54-A8B4-4D1DC551CCB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4A2C792-C170-4D54-A8B4-4D1DC551CCB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0C21CA1-29A6-4B20-B961-5EB20CE8CA43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0C21CA1-29A6-4B20-B961-5EB20CE8CA43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0C21CA1-29A6-4B20-B961-5EB20CE8CA43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0C21CA1-29A6-4B20-B961-5EB20CE8CA43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
