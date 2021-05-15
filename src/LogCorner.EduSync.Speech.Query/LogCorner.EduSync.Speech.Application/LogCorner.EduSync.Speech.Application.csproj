@@ -5,11 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Moq" Version="4.14.7" />
+    <PackageReference Include="Moq" Version="4.16.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LogCorner.EduSync.Speech.Domain\LogCorner.EduSync.Speech.ReadModel.csproj" />
     <ProjectReference Include="..\LogCorner.EduSync.Speech.Infrastructure\LogCorner.EduSync.Speech.Infrastructure.csproj" />
     <ProjectReference Include="..\LogCorner.EduSync.Speech.ReadModel\LogCorner.EduSync.Speech.ReadModel.csproj" />
   </ItemGroup>
