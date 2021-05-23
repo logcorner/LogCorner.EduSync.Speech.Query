@@ -45,7 +45,6 @@ namespace LogCorner.EduSync.Speech.Presentation
                             Scopes = new Dictionary<string, string>
                             {
                                 {"https://datasynchrob2c.onmicrosoft.com/query/api/Speech.List","List of Speeches"},
-                               
                             }
                         }
                     }
@@ -62,9 +61,8 @@ namespace LogCorner.EduSync.Speech.Presentation
                                 Id = "oauth2"
                             }
                         },
-                        new[] {
-                                "https://datasynchrob2c.onmicrosoft.com/query/api/Speech.List"
-                              }
+                        new[] 
+                            {"https://datasynchrob2c.onmicrosoft.com/query/api/Speech.List"}
                     }
                 });
             });

@@ -34,3 +34,6 @@
 /src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.ReadModel.UnitTests/bin/Debug/net5.0
 /src/obj
 /src/bin/Debug
+/.vs
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Application.UnitTests/bin/Release/net5.0
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Presentation.UnitTests/bin/Release/net5.0/CoverletSourceRootsMapping

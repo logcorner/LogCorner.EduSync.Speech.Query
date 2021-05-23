@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
 using LogCorner.EduSync.Speech.Application.UseCases;
 using LogCorner.EduSync.Speech.Infrastructure;
 using LogCorner.EduSync.Speech.Presentation.Exceptions;
 using LogCorner.EduSync.Speech.ReadModel.SpeechReadModel;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 
 namespace LogCorner.EduSync.Speech.Presentation
 {
@@ -63,7 +59,6 @@ namespace LogCorner.EduSync.Speech.Presentation
                     c.OAuthClientSecret("2QB3MZTlv7~N9~E0X7gvN2bX4-~Gx..Woa");
                     c.OAuthAppName("The Speech Micro Service Query Swagger UI");
                     c.OAuthScopeSeparator(" ");
-
                     c.OAuthUsePkce();
                 });
 
