@@ -46,6 +46,10 @@ namespace LogCorner.EduSync.Speech.Presentation
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
             app.UseCors("CorsPolicy");
 
             app.UseMiddleware<ExceptionMiddleware>();
