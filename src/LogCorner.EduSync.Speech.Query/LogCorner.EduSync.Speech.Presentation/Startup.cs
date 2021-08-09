@@ -1,5 +1,6 @@
 using LogCorner.EduSync.Speech.Application.UseCases;
 using LogCorner.EduSync.Speech.Infrastructure;
+using LogCorner.EduSync.Speech.Presentation.Exceptions;
 using LogCorner.EduSync.Speech.ReadModel.SpeechReadModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,15 +26,16 @@ namespace LogCorner.EduSync.Speech.Presentation
 
             services.AddCors(options =>
             {
-                var allowedOrigins = Configuration["allowedOrigins"];
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.WithOrigins(allowedOrigins.Split(","))
-                            .AllowAnyOrigin()
-                            .AllowAnyMethod();
-                    });
+                options.AddPolicy(
+                    "CorsPolicy",
+                    builder => builder.WithOrigins(Configuration["allowedOrigins"].Split(","))
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
             });
+
+            services.AddCustomAuthentication(Configuration);
+            services.AddCustomSwagger(Configuration);
             services.AddControllers();
         }
 
@@ -44,11 +46,27 @@ namespace LogCorner.EduSync.Speech.Presentation
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors();
-            //  app.UseHttpsRedirection();
+            else
+            {
+                app.UseHsts();
+            }
+            app.UseCors("CorsPolicy");
 
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseRouting();
 
+            app.UseSwagger()
+                .UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1");
+                    c.OAuthClientId("ea949966-4b5b-43a5-9917-d0918fb85873");
+                    c.OAuthClientSecret("2QB3MZTlv7~N9~E0X7gvN2bX4-~Gx..Woa");
+                    c.OAuthAppName("The Speech Micro Service Query Swagger UI");
+                    c.OAuthScopeSeparator(" ");
+                    c.OAuthUsePkce();
+                });
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
