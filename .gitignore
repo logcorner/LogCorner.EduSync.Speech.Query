@@ -40,3 +40,4 @@
 /.vs
 /src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Application.UnitTests/bin/Release/net5.0
 /src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Presentation.UnitTests/bin/Release/net5.0
+/src/docker-compose.dcproj.user
