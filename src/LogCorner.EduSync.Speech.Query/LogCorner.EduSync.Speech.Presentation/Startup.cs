@@ -60,7 +60,7 @@ namespace LogCorner.EduSync.Speech.Presentation
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1");
                     c.OAuthClientId("ea949966-4b5b-43a5-9917-d0918fb85873");
-                    c.OAuthClientSecret("2QB3MZTlv7~N9~E0X7gvN2bX4-~Gx..Woa");
+                    c.OAuthClientSecret("Hh5SQ~beY~F1QNMf16498~0~yMc1ca_hyA");
                     c.OAuthAppName("The Speech Micro Service Query Swagger UI");
                     c.OAuthScopeSeparator(" ");
                     c.OAuthUsePkce();

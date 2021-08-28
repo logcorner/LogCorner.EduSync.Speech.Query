@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   logcorner.edusync.speech.query:
-    image: ${DOCKER_REGISTRY-}logcorner-edusync-speech-query
+    image: ${DOCKER_REGISTRY-}/logcorner-edusync-speech-query
     build:
       context: .
       dockerfile: LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Presentation/Dockerfile
