@@ -31,11 +31,12 @@ namespace LogCorner.EduSync.Speech.Presentation
                     builder => builder.WithOrigins(Configuration["allowedOrigins"].Split(","))
                         .AllowAnyMethod()
                         .AllowAnyHeader()
-                        .AllowCredentials());
+                        .AllowCredentials()
+                         );
             });
 
             services.AddCustomAuthentication(Configuration);
-            services.AddCustomSwagger(Configuration);
+            services.AddCustomSwagger();
             services.AddControllers();
         }
 
@@ -46,10 +47,7 @@ namespace LogCorner.EduSync.Speech.Presentation
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
+           // app.UseHttpsRedirection();
             app.UseCors("CorsPolicy");
 
             app.UseMiddleware<ExceptionMiddleware>();
@@ -58,9 +56,11 @@ namespace LogCorner.EduSync.Speech.Presentation
             app.UseSwagger()
                 .UseSwaggerUI(c =>
                 {
+                    var OAuthClientId = Configuration["SwaggerUI:OAuthClientId"];
+                    var OAuthClientSecret = Configuration["SwaggerUI:OAuthClientSecret"];
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1");
-                    c.OAuthClientId("ea949966-4b5b-43a5-9917-d0918fb85873");
-                    c.OAuthClientSecret("Hh5SQ~beY~F1QNMf16498~0~yMc1ca_hyA");
+                    c.OAuthClientId(OAuthClientId);
+                    c.OAuthClientSecret(OAuthClientSecret);
                     c.OAuthAppName("The Speech Micro Service Query Swagger UI");
                     c.OAuthScopeSeparator(" ");
                     c.OAuthUsePkce();

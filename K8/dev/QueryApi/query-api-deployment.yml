@@ -5,22 +5,25 @@ metadata:
   name: query-api-deployment
   namespace: dev
   labels:
-    run: query-api
+    version: 1.0.0
+    product: query-http-api
+    environment: dev
 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: query-api
-  
+      app: query-api
+      env: dev
   template:
     metadata:
       labels:
-        run: query-api
+        app: query-api
+        env: dev
     spec:
       containers:
       - name: query-api-container
-        image: logcornerhub/logcorner-edusync-speech-query:1.0.0
+        image: logcornerhub/logcorner-edusync-speech-query
         imagePullPolicy: Never
         env:
         - name: ASPNETCORE_ENVIRONMENT

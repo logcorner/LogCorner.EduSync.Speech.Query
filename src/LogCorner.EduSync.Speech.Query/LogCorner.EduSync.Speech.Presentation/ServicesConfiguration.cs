@@ -22,7 +22,7 @@ namespace LogCorner.EduSync.Speech.Presentation
                     options => { configuration.Bind("AzureAdB2C", options); });
         }
 
-        public static void AddCustomSwagger(this IServiceCollection services, IConfiguration configuration)
+        public static void AddCustomSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(options =>
             {
