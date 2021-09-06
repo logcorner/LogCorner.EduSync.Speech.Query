@@ -2,10 +2,10 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: dev
-  name: query-api-service
+  name: speech-http-query-api-service
   labels:
     version: 1.0.0
-    product: query-http-api
+    product: speech-http-query-api
     environment: dev
 spec:
   type: NodePort
@@ -19,5 +19,5 @@ spec:
     protocol: TCP
     name: https
   selector:
-    app: query-api
+    app: speech-http-query-api
     env: dev
