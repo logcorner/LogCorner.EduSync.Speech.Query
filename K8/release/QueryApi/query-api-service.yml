@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: qa
+  name: speech-http-query-api-service
+  labels:
+    version: 1.0.0
+    product: speech-http-query-api
+    environment: qa
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  - port: 443
+    targetPort: 443
+    protocol: TCP
+    name: https
+  selector:
+    app: speech-http-query-api
+    env: qa
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: speech-http-query-api-ingress
+spec:
+    rules:
+    - http:
+        paths:
+        - path: /api/query/speech
+          pathType: Prefix
+          backend:
+            service:
+              name: speech-http-query-api-service
+              port:
+                number: 80
