@@ -21,19 +21,3 @@ spec:
   selector:
     app: speech-http-query-api
     env: qa
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-    name: speech-http-query-api-ingress
-spec:
-    rules:
-    - http:
-        paths:
-        - path: /api/query/speech
-          pathType: Prefix
-          backend:
-            service:
-              name: speech-http-query-api-service
-              port:
-                number: 80

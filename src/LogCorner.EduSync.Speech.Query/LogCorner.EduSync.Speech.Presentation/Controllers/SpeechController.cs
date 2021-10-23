@@ -1,7 +1,6 @@
 ﻿using LogCorner.EduSync.Speech.Application.UseCases;
 using LogCorner.EduSync.Speech.Presentation.Models;
 using LogCorner.EduSync.Speech.ReadModel.SpeechReadModel;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LogCorner.EduSync.Speech.Presentation.Controllers
 {
-    [Authorize]
+
     [ApiController]
     [Route("api/speech")]
     public class SpeechController : ControllerBase
