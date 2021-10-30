@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: speech-http-query-api-ingress
+  name: speech-query-http-api-ingress
   namespace: qa
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -15,10 +15,10 @@ spec:
     - host: kubernetes.docker.com
       http:
         paths:
-          - path: /speech-http-query-api(/|$)(.*)
+          - path: /speech-query-http-api(/|$)(.*)
             pathType: Prefix
             backend:
               service:
-                name: speech-http-query-api-service
+                name: speech-query-http-api-service
                 port:
                   number: 80

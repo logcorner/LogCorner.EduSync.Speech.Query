@@ -2,32 +2,32 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: speech-query-http-api-deployment
-  namespace: qa
+  name: speech-query-api-deployment
+  namespace: aks
   labels:
     version: 1.0.0
-    product: speech-query-http-api
-    environment: qa
+    product: speech-http-query-api
+    environment: aks
 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: speech-query-http-api
-      env: qa
+      app: speech-http-query-api
+      env: aks
   template:
     metadata:
       labels:
-        app: speech-query-http-api
-        env: qa
+        app: speech-http-query-api
+        env: aks
     spec:
       containers:
-      - name: speech-query-http-api
-        image: logcornerhub/logcorner-edusync-speech-query
-        imagePullPolicy: Never
+      - name: speech-http-query-api
+        image: acrlogcorner.azurecr.io/logcorner-edusync-speech-query
+        imagePullPolicy: Always
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: "Kubernetes.qa"
+          value: "Kubernetes"
         ports:
         - containerPort: 80
         - containerPort: 443
@@ -35,4 +35,6 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
+      imagePullSecrets:
+       - name: regsecret 
     
