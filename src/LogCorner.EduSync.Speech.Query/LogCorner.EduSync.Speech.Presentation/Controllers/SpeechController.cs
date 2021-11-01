@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace LogCorner.EduSync.Speech.Presentation.Controllers
 {
-
     [ApiController]
     [Route("api/speech")]
     public class SpeechController : ControllerBase

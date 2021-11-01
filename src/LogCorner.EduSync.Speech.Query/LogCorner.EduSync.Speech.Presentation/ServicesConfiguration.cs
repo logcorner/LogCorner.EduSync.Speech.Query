@@ -22,8 +22,10 @@ namespace LogCorner.EduSync.Speech.Presentation
                     options => { configuration.Bind("AzureAdB2C", options); });
         }
 
-        public static void AddCustomSwagger(this IServiceCollection services)
+        public static void AddCustomSwagger(this IServiceCollection services, IConfiguration configuration)
         {
+            var tenantName = configuration["SwaggerUI:TenantName"];
+            var signUpSignInPolicyId = configuration["AzureAdB2C:SignUpSignInPolicyId"];
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
@@ -40,11 +42,11 @@ namespace LogCorner.EduSync.Speech.Presentation
                     {
                         AuthorizationCode = new OpenApiOAuthFlow
                         {
-                            AuthorizationUrl = new Uri("https://datasynchrob2c.b2clogin.com/datasynchrob2c.onmicrosoft.com/B2C_1_SignUpIn/oauth2/v2.0/authorize"),
-                            TokenUrl = new Uri("https://datasynchrob2c.b2clogin.com/datasynchrob2c.onmicrosoft.com/B2C_1_SignUpIn/oauth2/v2.0/token"),
+                            AuthorizationUrl = new Uri($"https://{tenantName}.b2clogin.com/{tenantName}.onmicrosoft.com/{signUpSignInPolicyId}/oauth2/v2.0/authorize"),
+                            TokenUrl = new Uri($"https://{tenantName}.b2clogin.com/{tenantName}.onmicrosoft.com/{signUpSignInPolicyId}/oauth2/v2.0/token"),
                             Scopes = new Dictionary<string, string>
                             {
-                                {"https://datasynchrob2c.onmicrosoft.com/query/api/Speech.List","List of Speeches"},
+                                {$"https://{tenantName}.onmicrosoft.com/query/api/Speech.List","List of Speeches"},
                             }
                         }
                     }
@@ -61,8 +63,7 @@ namespace LogCorner.EduSync.Speech.Presentation
                                 Id = "oauth2"
                             }
                         },
-                        new[] 
-                            {"https://datasynchrob2c.onmicrosoft.com/query/api/Speech.List"}
+                        new[]{$"https://{tenantName}.onmicrosoft.com/query/api/Speech.List"}
                     }
                 });
             });

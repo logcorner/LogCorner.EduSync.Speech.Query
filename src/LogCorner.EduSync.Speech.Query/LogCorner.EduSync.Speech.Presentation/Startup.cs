@@ -20,6 +20,7 @@ namespace LogCorner.EduSync.Speech.Presentation
         {
             Configuration = configuration;
         }
+
         public void ConfigureServices(IServiceCollection services)
         {
             var elasticSearchUrl = Configuration["elasticSearchUrl"];
@@ -38,7 +39,7 @@ namespace LogCorner.EduSync.Speech.Presentation
             });
 
             services.AddCustomAuthentication(Configuration);
-            services.AddCustomSwagger();
+            services.AddCustomSwagger(Configuration);
             services.AddControllers();
         }
 

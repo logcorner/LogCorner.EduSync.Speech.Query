@@ -58,6 +58,10 @@ namespace LogCorner.EduSync.Speech.Infrastructure
                     .MatchAll()
                 )
             );
+            if (!searchResponse.IsValid)
+            {
+                throw searchResponse.OriginalException;
+            }
             Console.WriteLine(searchResponse.DebugInformation);
             return searchResponse.Documents?.ToList();
         }
