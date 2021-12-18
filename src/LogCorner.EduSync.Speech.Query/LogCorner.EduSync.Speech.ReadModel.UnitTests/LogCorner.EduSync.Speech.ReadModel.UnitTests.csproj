@@ -19,10 +19,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="LogCorner.EduSync.Speech.SharedKernel">
-      <HintPath>..\..\..\SharedKernel\LogCorner.EduSync.Speech.SharedKernel.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
