@@ -50,7 +50,12 @@ namespace LogCorner.EduSync.Speech.Presentation
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseHttpsRedirection();
+            else
+            {
+                app.UseHsts();
+                app.UseHttpsRedirection();
+            }
+
             app.UseCors("CorsPolicy");
 
             app.UseMiddleware<ExceptionMiddleware>();
@@ -70,11 +75,11 @@ namespace LogCorner.EduSync.Speech.Presentation
                 })
                 .UseSwaggerUI(c =>
                 {
-                    var OAuthClientId = Configuration["SwaggerUI:OAuthClientId"];
-                    var OAuthClientSecret = Configuration["SwaggerUI:OAuthClientSecret"];
+                    var oAuthClientId = Configuration["SwaggerUI:OAuthClientId"];
+                    var oAuthClientSecret = Configuration["SwaggerUI:OAuthClientSecret"];
                     c.SwaggerEndpoint("../swagger/v1/swagger.json", "WebApi v1");
-                    c.OAuthClientId(OAuthClientId);
-                    c.OAuthClientSecret(OAuthClientSecret);
+                    c.OAuthClientId(oAuthClientId);
+                    c.OAuthClientSecret(oAuthClientSecret);
                     c.OAuthAppName("The Speech Micro Service Query Swagger UI");
                     c.OAuthScopeSeparator(" ");
                     c.OAuthUsePkce();
@@ -95,3 +100,4 @@ namespace LogCorner.EduSync.Speech.Presentation
         }
     }
 }
+
