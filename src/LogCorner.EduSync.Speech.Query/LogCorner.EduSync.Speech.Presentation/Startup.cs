@@ -2,6 +2,7 @@ using LogCorner.EduSync.Speech.Application.UseCases;
 using LogCorner.EduSync.Speech.Infrastructure;
 using LogCorner.EduSync.Speech.Presentation.Exceptions;
 using LogCorner.EduSync.Speech.ReadModel.SpeechReadModel;
+using LogCorner.EduSync.Speech.Telemetry.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -40,6 +41,9 @@ namespace LogCorner.EduSync.Speech.Presentation
 
             services.AddCustomAuthentication(Configuration);
             services.AddCustomSwagger(Configuration);
+
+            services.AddOpenTelemetry(Configuration);
+
             services.AddControllers();
         }
 
@@ -100,4 +104,3 @@ namespace LogCorner.EduSync.Speech.Presentation
         }
     }
 }
-

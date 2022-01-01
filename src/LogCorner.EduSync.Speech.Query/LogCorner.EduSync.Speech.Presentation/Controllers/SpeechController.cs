@@ -1,6 +1,7 @@
 ﻿using LogCorner.EduSync.Speech.Application.UseCases;
 using LogCorner.EduSync.Speech.Presentation.Models;
 using LogCorner.EduSync.Speech.ReadModel.SpeechReadModel;
+using LogCorner.EduSync.Speech.Telemetry;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,18 +14,23 @@ namespace LogCorner.EduSync.Speech.Presentation.Controllers
     public class SpeechController : ControllerBase
     {
         private readonly ISpeechUseCase _getSpeechUseCase;
+        private readonly ITraceService _traceService;
 
-        public SpeechController(ISpeechUseCase getSpeechUseCase)
+        public SpeechController(ISpeechUseCase getSpeechUseCase, ITraceService traceService)
         {
             _getSpeechUseCase = getSpeechUseCase;
+            _traceService = traceService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var result = await _getSpeechUseCase.Handle();
+            using (var activity = _traceService.StartActivity("Get Speeches"))
+            {
+                var result = await _getSpeechUseCase.Handle();
 
-            return Ok(result);
+                return Ok(result);
+            }
         }
 
         [HttpGet("paginated")]
