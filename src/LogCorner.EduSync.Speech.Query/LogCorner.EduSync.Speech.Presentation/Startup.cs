@@ -46,6 +46,7 @@ namespace LogCorner.EduSync.Speech.Presentation
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            bool.TryParse(Configuration["isAuthenticationEnabled"], out var isAuthenticationEnabled);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -75,14 +76,18 @@ namespace LogCorner.EduSync.Speech.Presentation
                 })
                 .UseSwaggerUI(c =>
                 {
-                    var oAuthClientId = Configuration["SwaggerUI:OAuthClientId"];
-                    var oAuthClientSecret = Configuration["SwaggerUI:OAuthClientSecret"];
                     c.SwaggerEndpoint("../swagger/v1/swagger.json", "WebApi v1");
-                    c.OAuthClientId(oAuthClientId);
-                    c.OAuthClientSecret(oAuthClientSecret);
-                    c.OAuthAppName("The Speech Micro Service Query Swagger UI");
-                    c.OAuthScopeSeparator(" ");
-                    c.OAuthUsePkce();
+
+                    if (isAuthenticationEnabled)
+                    {
+                        var oAuthClientId = Configuration["SwaggerUI:OAuthClientId"];
+                        var oAuthClientSecret = Configuration["SwaggerUI:OAuthClientSecret"];
+                        c.OAuthClientId(oAuthClientId);
+                        c.OAuthClientSecret(oAuthClientSecret);
+                        c.OAuthAppName("The Speech Micro Service Query Swagger UI");
+                        c.OAuthScopeSeparator(" ");
+                        c.OAuthUsePkce();
+                    }
                 });
 
             app.UseAuthentication();
@@ -90,7 +95,14 @@ namespace LogCorner.EduSync.Speech.Presentation
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers().RequireAuthorization();
+                if (isAuthenticationEnabled)
+                {
+                    endpoints.MapControllers().RequireAuthorization();
+                }
+                else
+                {
+                    endpoints.MapControllers();
+                }
             });
 
             if (!string.IsNullOrWhiteSpace(pathBase))
@@ -100,4 +112,3 @@ namespace LogCorner.EduSync.Speech.Presentation
         }
     }
 }
-

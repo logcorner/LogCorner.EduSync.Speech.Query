@@ -12,6 +12,11 @@ namespace LogCorner.EduSync.Speech.Presentation
     {
         public static void AddCustomAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
+            bool.TryParse(configuration["isAuthenticationEnabled"], out var isAuthenticationEnabled);
+            if (!isAuthenticationEnabled)
+            {
+                return;
+            }
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(options =>
                     {
@@ -34,38 +39,49 @@ namespace LogCorner.EduSync.Speech.Presentation
                     Version = "v1",
                     Description = "The Speech Micro Service Query HTTP API"
                 });
-                options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-                {
-                    Type = SecuritySchemeType.OAuth2,
 
-                    Flows = new OpenApiOAuthFlows
+                bool.TryParse(configuration["isAuthenticationEnabled"], out var isAuthenticationEnabled);
+                if (isAuthenticationEnabled)
+                {
+                    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
                     {
-                        AuthorizationCode = new OpenApiOAuthFlow
+                        Type = SecuritySchemeType.OAuth2,
+
+                        Flows = new OpenApiOAuthFlows
                         {
-                            AuthorizationUrl = new Uri($"https://{tenantName}.b2clogin.com/{tenantName}.onmicrosoft.com/{signUpSignInPolicyId}/oauth2/v2.0/authorize"),
-                            TokenUrl = new Uri($"https://{tenantName}.b2clogin.com/{tenantName}.onmicrosoft.com/{signUpSignInPolicyId}/oauth2/v2.0/token"),
-                            Scopes = new Dictionary<string, string>
+                            AuthorizationCode = new OpenApiOAuthFlow
                             {
-                                {$"https://{tenantName}.onmicrosoft.com/query/api/Speech.List","List of Speeches"},
+                                AuthorizationUrl =
+                                    new Uri(
+                                        $"https://{tenantName}.b2clogin.com/{tenantName}.onmicrosoft.com/{signUpSignInPolicyId}/oauth2/v2.0/authorize"),
+                                TokenUrl = new Uri(
+                                    $"https://{tenantName}.b2clogin.com/{tenantName}.onmicrosoft.com/{signUpSignInPolicyId}/oauth2/v2.0/token"),
+                                Scopes = new Dictionary<string, string>
+                                {
+                                    {
+                                        $"https://{tenantName}.onmicrosoft.com/query/api/Speech.List",
+                                        "List of Speeches"
+                                    },
+                                }
                             }
                         }
-                    }
-                });
+                    });
 
-                options.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
+                    options.AddSecurityRequirement(new OpenApiSecurityRequirement
                     {
-                        new OpenApiSecurityScheme
                         {
-                            Reference = new OpenApiReference
+                            new OpenApiSecurityScheme
                             {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "oauth2"
-                            }
-                        },
-                        new[]{$"https://{tenantName}.onmicrosoft.com/query/api/Speech.List"}
-                    }
-                });
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme,
+                                    Id = "oauth2"
+                                }
+                            },
+                            new[] { $"https://{tenantName}.onmicrosoft.com/query/api/Speech.List" }
+                        }
+                    });
+                }
             });
         }
     }
