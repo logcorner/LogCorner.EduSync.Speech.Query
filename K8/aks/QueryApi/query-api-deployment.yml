@@ -3,7 +3,7 @@ kind: Deployment
 
 metadata:
   name: speech-query-api-deployment
-  namespace: aks
+  #namespace: aks
   labels:
     version: 1.0.0
     product: speech-http-query-api
@@ -23,11 +23,11 @@ spec:
     spec:
       containers:
       - name: speech-http-query-api
-        image: acrlogcorner.azurecr.io/logcorner-edusync-speech-query
-        imagePullPolicy: Always
+        image: logcornerhub/logcorner-edusync-speech-query
+        imagePullPolicy: IfNotPresent
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: "Kubernetes"
+          value: "Kubernetes.aks"
         ports:
         - containerPort: 80
         - containerPort: 443

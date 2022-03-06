@@ -1,14 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: aks
+  #namespace: aks
   name: speech-http-query-api-service
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
   labels:
     version: 1.0.0
     product: speech-http-query-api
     environment: aks
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
   - port: 80
     targetPort: 80
