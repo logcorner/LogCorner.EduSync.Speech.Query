@@ -4,6 +4,6 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>LogCorner.EduSync.Speech.Presentation</ActiveDebugProfile>
+    <ActiveDebugProfile>Docker (1)</ActiveDebugProfile>
   </PropertyGroup>
 </Project>

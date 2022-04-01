@@ -42,3 +42,8 @@
 /src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Presentation.UnitTests/bin/Release/net5.0
 /src/docker-compose.dcproj.user
 /src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Presentation/appsettings.Development.save.json
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Application/bin/Debug/net6.0
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Infrastructure/bin/Debug/net6.0
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.Presentation/bin/Debug/net6.0
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.ReadModel/bin/Debug/net6.0
+/src/LogCorner.EduSync.Speech.Query/LogCorner.EduSync.Speech.ReadModel.UnitTests/bin/Debug/net6.0
