@@ -1,4 +1,5 @@
-﻿using LogCorner.EduSync.Speech.ReadModel.SpeechReadModel;
+﻿using LogCorner.EduSync.Speech.Infrastructure.Exceptions;
+using LogCorner.EduSync.Speech.ReadModel.SpeechReadModel;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -8,7 +9,7 @@ namespace LogCorner.EduSync.Speech.Infrastructure
     {
         public static void AddElasticSearch<T>(this IServiceCollection services, string url, string index) where T : Entity<Guid>
         {
-            services.AddScoped<IElasticSearchClient<T>, ElasticSearchClient<T>>(ctx =>
+            services.AddScoped<IElasticSearchClient<T>, ElasticSearchClient<T>>(_ =>
             {
                 var elasticSearchClient = new ElasticSearchClient<T>(index);
                 if (!string.IsNullOrWhiteSpace(url))
@@ -17,7 +18,7 @@ namespace LogCorner.EduSync.Speech.Infrastructure
 
                     if (setup.ServerError != null)
                     {
-                        throw new Exception($"Cannot initialyze elasticsearch {url} - {index} - {setup.ServerError} - {setup.OriginalException}");
+                        throw new InfrastructureException($"Cannot initialyze elasticsearch {url} - {index} - {setup.ServerError} - {setup.OriginalException}");
                     }
                 }
 

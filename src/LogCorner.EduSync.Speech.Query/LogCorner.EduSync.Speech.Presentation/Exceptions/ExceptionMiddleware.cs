@@ -27,12 +27,14 @@ namespace LogCorner.EduSync.Speech.Presentation.Exceptions
             catch (Exception ex)
             {
                 var logger = _loggerFactory.CreateLogger("ExceptionMiddleware");
-                logger.LogError($"Something went wrong: {ex.StackTrace}");
-                await HandleExceptionAsync(ex, httpContext);
+#pragma warning disable CA2254 // Template should be a static expression
+                logger.LogError($"Something went wrong: {ex.Message} - {ex.StackTrace}");
+#pragma warning disable CA2254 // Template should be a static expression
+                await HandleExceptionAsync(httpContext);
             }
         }
 
-        private static Task HandleExceptionAsync(Exception ex, HttpContext context)
+        private static Task HandleExceptionAsync(HttpContext context)
         {
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;

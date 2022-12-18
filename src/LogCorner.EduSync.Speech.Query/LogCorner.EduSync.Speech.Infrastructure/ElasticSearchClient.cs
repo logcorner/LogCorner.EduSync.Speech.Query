@@ -69,7 +69,7 @@ namespace LogCorner.EduSync.Speech.Infrastructure
         public async Task<SearchResult<T>> Get(int page, int pageSize)
         {
             if (page <= 0)
-                throw new ArgumentNullException($"page {page} is not valid, page number should be greater than 0");
+                ArgumentNullException.ThrowIfNull($"page {page} is not valid, page number should be greater than 0");
 
             if (pageSize > 10)
                 pageSize = 10;
