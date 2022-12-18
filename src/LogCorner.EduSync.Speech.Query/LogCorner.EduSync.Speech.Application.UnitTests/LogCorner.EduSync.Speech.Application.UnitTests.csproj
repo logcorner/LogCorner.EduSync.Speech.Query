@@ -26,10 +26,10 @@
 
   <ItemGroup>
     <Reference Include="LogCorner.EduSync.Speech.Resiliency">
-      <HintPath>..\..\..\..\..\LogCorner.EduSync.Speech.Query.Pipeline\src\BINARIES\LogCorner.EduSync.Speech.Resiliency.dll</HintPath>
+      <HintPath>..\..\BINARIES\LogCorner.EduSync.Speech.Resiliency.dll</HintPath>
     </Reference>
     <Reference Include="LogCorner.EduSync.Speech.Telemetry">
-      <HintPath>..\..\..\..\..\LogCorner.EduSync.Speech.Query.Pipeline\src\BINARIES\LogCorner.EduSync.Speech.Telemetry.dll</HintPath>
+      <HintPath>..\..\BINARIES\LogCorner.EduSync.Speech.Telemetry.dll</HintPath>
     </Reference>
   </ItemGroup>
 
