@@ -3,6 +3,7 @@ using LogCorner.EduSync.Speech.Infrastructure.Model;
 using LogCorner.EduSync.Speech.Presentation.Controllers;
 using LogCorner.EduSync.Speech.Presentation.Models;
 using LogCorner.EduSync.Speech.ReadModel.SpeechReadModel;
+using LogCorner.EduSync.Speech.Telemetry;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
@@ -24,7 +25,9 @@ namespace LogCorner.EduSync.Speech.Presentation.UnitTests
                 new SpeechView(Guid.NewGuid(), It.IsAny<string>(),It.IsAny<string>(),It.IsAny<string>(),It.IsAny<SpeechType>(),It.IsAny<int>())
             };
             mockSpeechUseCase.Setup(m => m.Handle()).Returns(Task.FromResult(speeches));
-            var speechController = new SpeechController(mockSpeechUseCase.Object);
+            var mockTraceService = new Mock<ITraceService>();
+            mockTraceService.SetupAllProperties();
+            var speechController = new SpeechController(mockSpeechUseCase.Object, mockTraceService.Object);
 
             //Act
             var result = await speechController.Get();
@@ -41,8 +44,9 @@ namespace LogCorner.EduSync.Speech.Presentation.UnitTests
             //Arrange
 
             var mockSpeechUseCase = new Mock<ISpeechUseCase>();
-
-            var speechController = new SpeechController(mockSpeechUseCase.Object);
+            var mockTraceService = new Mock<ITraceService>();
+            mockTraceService.SetupAllProperties();
+            var speechController = new SpeechController(mockSpeechUseCase.Object, mockTraceService.Object);
 
             //Act
             var result = await speechController.Get(null);
@@ -65,8 +69,10 @@ namespace LogCorner.EduSync.Speech.Presentation.UnitTests
             };
 
             var mockSpeechUseCase = new Mock<ISpeechUseCase>();
+            var mockTraceService = new Mock<ITraceService>();
+            mockTraceService.SetupAllProperties();
 
-            var speechController = new SpeechController(mockSpeechUseCase.Object);
+            var speechController = new SpeechController(mockSpeechUseCase.Object, mockTraceService.Object);
 
             //Act
             var result = await speechController.Get(queryModel);
@@ -96,7 +102,9 @@ namespace LogCorner.EduSync.Speech.Presentation.UnitTests
             var mockSpeechUseCase = new Mock<ISpeechUseCase>();
 
             mockSpeechUseCase.Setup(m => m.Handle(It.IsAny<int>(), It.IsAny<int>())).Returns(Task.FromResult(searchResult));
-            var speechController = new SpeechController(mockSpeechUseCase.Object);
+            var mockTraceService = new Mock<ITraceService>();
+            mockTraceService.SetupAllProperties();
+            var speechController = new SpeechController(mockSpeechUseCase.Object, mockTraceService.Object);
 
             //Act
 
@@ -119,7 +127,9 @@ namespace LogCorner.EduSync.Speech.Presentation.UnitTests
             var mockSpeechUseCase = new Mock<ISpeechUseCase>();
 
             mockSpeechUseCase.Setup(m => m.Handle(id)).Returns(Task.FromResult(speech));
-            var speechController = new SpeechController(mockSpeechUseCase.Object);
+            var mockTraceService = new Mock<ITraceService>();
+            mockTraceService.SetupAllProperties();
+            var speechController = new SpeechController(mockSpeechUseCase.Object, mockTraceService.Object);
 
             //Act
             var result = await speechController.Get(id);

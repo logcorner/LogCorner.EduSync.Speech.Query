@@ -2,6 +2,8 @@ using LogCorner.EduSync.Speech.Application.UseCases;
 using LogCorner.EduSync.Speech.Infrastructure;
 using LogCorner.EduSync.Speech.Presentation.Exceptions;
 using LogCorner.EduSync.Speech.ReadModel.SpeechReadModel;
+using LogCorner.EduSync.Speech.Resiliency;
+using LogCorner.EduSync.Speech.Telemetry.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -40,13 +42,19 @@ namespace LogCorner.EduSync.Speech.Presentation
 
             services.AddCustomAuthentication(Configuration);
             services.AddCustomSwagger(Configuration);
+
+            services.AddResiliencyServices();
+            services.AddOpenTelemetry(Configuration);
             services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            bool.TryParse(Configuration["isAuthenticationEnabled"], out var isAuthenticationEnabled);
+            if (!bool.TryParse(Configuration["isAuthenticationEnabled"], out var isAuthenticationEnabled))
+            {
+                throw new PresentationException("isAuthenticationEnabled should be configured in appsettings");
+            }
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

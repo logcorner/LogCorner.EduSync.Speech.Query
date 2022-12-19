@@ -12,8 +12,7 @@ namespace LogCorner.EduSync.Speech.Presentation
     {
         public static void AddCustomAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
-            bool.TryParse(configuration["isAuthenticationEnabled"], out var isAuthenticationEnabled);
-            if (!isAuthenticationEnabled)
+            if (!bool.TryParse(configuration["isAuthenticationEnabled"], out var isAuthenticationEnabled) || !isAuthenticationEnabled)
             {
                 return;
             }
@@ -40,34 +39,36 @@ namespace LogCorner.EduSync.Speech.Presentation
                     Description = "The Speech Micro Service Query HTTP API"
                 });
 
-                bool.TryParse(configuration["isAuthenticationEnabled"], out var isAuthenticationEnabled);
-                if (isAuthenticationEnabled)
+                if (!bool.TryParse(configuration["isAuthenticationEnabled"], out var isAuthenticationEnabled) || !isAuthenticationEnabled)
                 {
-                    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-                    {
-                        Type = SecuritySchemeType.OAuth2,
+                    return;
+                }
 
-                        Flows = new OpenApiOAuthFlows
+                options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.OAuth2,
+
+                    Flows = new OpenApiOAuthFlows
+                    {
+                        AuthorizationCode = new OpenApiOAuthFlow
                         {
-                            AuthorizationCode = new OpenApiOAuthFlow
-                            {
-                                AuthorizationUrl =
-                                    new Uri(
-                                        $"https://{tenantName}.b2clogin.com/{tenantName}.onmicrosoft.com/{signUpSignInPolicyId}/oauth2/v2.0/authorize"),
-                                TokenUrl = new Uri(
-                                    $"https://{tenantName}.b2clogin.com/{tenantName}.onmicrosoft.com/{signUpSignInPolicyId}/oauth2/v2.0/token"),
-                                Scopes = new Dictionary<string, string>
+                            AuthorizationUrl =
+                                new Uri(
+                                    $"https://{tenantName}.b2clogin.com/{tenantName}.onmicrosoft.com/{signUpSignInPolicyId}/oauth2/v2.0/authorize"),
+                            TokenUrl = new Uri(
+                                $"https://{tenantName}.b2clogin.com/{tenantName}.onmicrosoft.com/{signUpSignInPolicyId}/oauth2/v2.0/token"),
+                            Scopes = new Dictionary<string, string>
                                 {
                                     {
                                         $"https://{tenantName}.onmicrosoft.com/query/api/Speech.List",
                                         "List of Speeches"
                                     },
                                 }
-                            }
                         }
-                    });
+                    }
+                });
 
-                    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
                     {
                         {
                             new OpenApiSecurityScheme
@@ -81,7 +82,6 @@ namespace LogCorner.EduSync.Speech.Presentation
                             new[] { $"https://{tenantName}.onmicrosoft.com/query/api/Speech.List" }
                         }
                     });
-                }
             });
         }
     }

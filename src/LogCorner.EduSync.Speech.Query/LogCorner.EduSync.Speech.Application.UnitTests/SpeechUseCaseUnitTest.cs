@@ -2,7 +2,9 @@ using LogCorner.EduSync.Speech.Application.UseCases;
 using LogCorner.EduSync.Speech.Infrastructure;
 using LogCorner.EduSync.Speech.Infrastructure.Model;
 using LogCorner.EduSync.Speech.ReadModel.SpeechReadModel;
+using LogCorner.EduSync.Speech.Resiliency;
 using Moq;
+using Polly;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -19,10 +21,14 @@ namespace LogCorner.EduSync.Speech.Application.UnitTests
             var mockElasticSearchClient = new Mock<IElasticSearchClient<SpeechView>>();
             IList<SpeechView> speeches = new List<SpeechView>
             {
-                new SpeechView(Guid.NewGuid(), It.IsAny<string>(),It.IsAny<string>(),It.IsAny<string>(),It.IsAny<SpeechType>(),It.IsAny<int>())
+                new(Guid.NewGuid(), It.IsAny<string>(),It.IsAny<string>(),It.IsAny<string>(),It.IsAny<SpeechType>(),It.IsAny<int>())
             };
             mockElasticSearchClient.Setup(m => m.Get()).Returns(Task.FromResult(speeches));
-            ISpeechUseCase speechUseCase = new SpeechUseCase(mockElasticSearchClient.Object);
+
+            var mockResiliencyService = new Mock<IResiliencyService>();
+            mockResiliencyService.SetupAllProperties();
+            mockResiliencyService.Object.ExponentialExceptionRetry = Policy.NoOpAsync();
+            ISpeechUseCase speechUseCase = new SpeechUseCase(mockElasticSearchClient.Object, mockResiliencyService.Object);
 
             //Act
             var result = await speechUseCase.Handle();
@@ -44,7 +50,10 @@ namespace LogCorner.EduSync.Speech.Application.UnitTests
             {
                 Results = speeches
             }));
-            ISpeechUseCase speechUseCase = new SpeechUseCase(mockElasticSearchClient.Object);
+
+            var mockResiliencyService = new Mock<IResiliencyService>();
+            mockResiliencyService.SetupAllProperties();
+            ISpeechUseCase speechUseCase = new SpeechUseCase(mockElasticSearchClient.Object, mockResiliencyService.Object);
 
             //Act
             var result = await speechUseCase.Handle(It.IsAny<int>(), It.IsAny<int>());
@@ -64,7 +73,10 @@ namespace LogCorner.EduSync.Speech.Application.UnitTests
                     new SpeechType(1, "typeNmae"), It.IsAny<int>());
 
             mockElasticSearchClient.Setup(m => m.Get(id)).Returns(Task.FromResult(speech));
-            ISpeechUseCase speechUseCase = new SpeechUseCase(mockElasticSearchClient.Object);
+
+            var mockResiliencyService = new Mock<IResiliencyService>();
+            mockResiliencyService.SetupAllProperties();
+            ISpeechUseCase speechUseCase = new SpeechUseCase(mockElasticSearchClient.Object, mockResiliencyService.Object);
 
             //Act
             var result = await speechUseCase.Handle(id);
