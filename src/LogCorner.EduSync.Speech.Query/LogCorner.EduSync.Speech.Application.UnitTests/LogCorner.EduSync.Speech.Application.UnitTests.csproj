@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="LogCorner.EduSync.Speech.Resiliency" Version="2.0.5" />
+    <PackageReference Include="LogCorner.EduSync.Speech.Telemetry" Version="2.0.6" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
@@ -24,13 +26,6 @@
     <ProjectReference Include="..\LogCorner.EduSync.Speech.ReadModel\LogCorner.EduSync.Speech.ReadModel.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="LogCorner.EduSync.Speech.Resiliency">
-      <HintPath>..\..\BINARIES\LogCorner.EduSync.Speech.Resiliency.dll</HintPath>
-    </Reference>
-    <Reference Include="LogCorner.EduSync.Speech.Telemetry">
-      <HintPath>..\..\BINARIES\LogCorner.EduSync.Speech.Telemetry.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+
 
 </Project>

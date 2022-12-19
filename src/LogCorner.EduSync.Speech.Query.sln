@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.1.32319.34
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10. ReadModel", "10. ReadModel", "{88CF79DE-A77C-43F8-AE79-8ABDFB245C43}"
 EndProject
@@ -16,8 +16,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogCorner.EduSync.Speech.Application.UnitTests", "LogCorner.EduSync.Speech.Query\LogCorner.EduSync.Speech.Application.UnitTests\LogCorner.EduSync.Speech.Application.UnitTests.csproj", "{BC9C17BF-32B9-4119-9078-9B34566357AD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogCorner.EduSync.Speech.Infrastructure", "LogCorner.EduSync.Speech.Query\LogCorner.EduSync.Speech.Infrastructure\LogCorner.EduSync.Speech.Infrastructure.csproj", "{9750F6F3-A63B-4AD0-ADA5-DFF81A83E458}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogCorner.EduSync.Speech.Infrastructure.UnitTests", "LogCorner.EduSync.Speech.Query\LogCorner.EduSync.Speech.Infrastructure.UnitTests\LogCorner.EduSync.Speech.Infrastructure.UnitTests.csproj", "{4ED3461F-0CAB-440D-863E-0411DC08187B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogCorner.EduSync.Speech.Presentation", "LogCorner.EduSync.Speech.Query\LogCorner.EduSync.Speech.Presentation\LogCorner.EduSync.Speech.Presentation.csproj", "{2D718E82-358F-49E4-828D-A0C0114ACBF4}"
 EndProject
@@ -47,10 +45,6 @@ Global
 		{9750F6F3-A63B-4AD0-ADA5-DFF81A83E458}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9750F6F3-A63B-4AD0-ADA5-DFF81A83E458}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9750F6F3-A63B-4AD0-ADA5-DFF81A83E458}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4ED3461F-0CAB-440D-863E-0411DC08187B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4ED3461F-0CAB-440D-863E-0411DC08187B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4ED3461F-0CAB-440D-863E-0411DC08187B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4ED3461F-0CAB-440D-863E-0411DC08187B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2D718E82-358F-49E4-828D-A0C0114ACBF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2D718E82-358F-49E4-828D-A0C0114ACBF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D718E82-358F-49E4-828D-A0C0114ACBF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -79,7 +73,6 @@ Global
 		{5DE76D91-1801-4156-8789-54A8AE86F949} = {3D83FC19-E95B-4555-9BD3-5E75CA6C435F}
 		{BC9C17BF-32B9-4119-9078-9B34566357AD} = {3D83FC19-E95B-4555-9BD3-5E75CA6C435F}
 		{9750F6F3-A63B-4AD0-ADA5-DFF81A83E458} = {F61DB426-D66B-4E1E-A49D-26FB7C111EC6}
-		{4ED3461F-0CAB-440D-863E-0411DC08187B} = {F61DB426-D66B-4E1E-A49D-26FB7C111EC6}
 		{2D718E82-358F-49E4-828D-A0C0114ACBF4} = {DDD78F74-8E19-463E-9D2C-DD29AAEFF294}
 		{ECAA3BAB-C5A7-4FC0-8167-FF6C057C0529} = {DDD78F74-8E19-463E-9D2C-DD29AAEFF294}
 		{72237AB8-3651-4562-B417-AC5AA062EF52} = {88CF79DE-A77C-43F8-AE79-8ABDFB245C43}
