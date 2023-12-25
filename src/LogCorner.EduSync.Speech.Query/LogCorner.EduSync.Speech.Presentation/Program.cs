@@ -41,7 +41,7 @@ namespace LogCorner.EduSync.Speech.Presentation
                     loggingBuilder.ClearProviders();
                     loggingBuilder.AddConsole();
                     loggingBuilder.AddSerilog(context.Configuration);
-                    loggingBuilder.AddOpenTelemetry(context.Configuration);
+                   // loggingBuilder.AddOpenTelemetry(context.Configuration);
                 })
 
                 .ConfigureWebHostDefaults(webBuilder =>

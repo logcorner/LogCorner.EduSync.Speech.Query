@@ -44,7 +44,7 @@ namespace LogCorner.EduSync.Speech.Presentation
             services.AddCustomSwagger(Configuration);
 
             services.AddResiliencyServices();
-            services.AddOpenTelemetry(Configuration);
+            services.AddOpenTelemetryServices(Configuration);
             services.AddControllers();
         }
 
